@@ -72,7 +72,7 @@ pub fn registrar_jogo(nome: String, tipo: Tipo_jogo, duracao_media_partida: Int,
 }
 
 ///operações
-
+///talvez tenha que descartar esse aqui
 pub fn pontos_resultado(resul: Resultado) -> Int{
 	Vitoria -> 3
 	Derrota -> 0
@@ -80,19 +80,25 @@ pub fn pontos_resultado(resul: Resultado) -> Int{
 }
 
 ///calcula a pontuação total de uma determinada equipe
-pub fn pontuacao_total(eq: Equipe) -> Int {
-	case eq.partidas {
-    	[] -> None
-    	[n, ..resto] ->
-        	case eq == equipe1 {
-           	 
-        	}
-        	case eq == equipe2 {
-
-        	}
-	}
+pub fn pontuacao_total(eq: Equipe ) -> Int {
+    soma_pontuacao(eq.id, eq.partidas)
 }
 
+///funcao auxiliar de *pontuacao_total* criada para permitir a recursividade a partir dos dados de uma equipe
+fn soma_pontuacao(eq_id: Int, eq_partidas: List(Partida)) -> Int{
+    case eq_partidas {
+        [] -> 0
+        [n, ..resto] ->
+            case eq_id == n.equipe1.id {
+                True -> n.pontuacao1 + soma_pontuacao(eq_id, resto)
+                False -> 
+                    case eq_id == n.equipe2.id {
+                        True -> n.pontuacao2 + soma_pontuacao(eq_id, resto)
+                        False -> 0 + soma_pontuacao(eq_id, resto)
+                    }
+            }
+    }
+}
 
 pub fn melhor_desempenho(camp: Campeonato) -> Equipe {
     
