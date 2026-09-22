@@ -1,18 +1,20 @@
 import gleam/option.{type Option, None, Some}
 import sgleam/check
 
+pub type Performance {
+  Performance(pontuacao: Int, objetivos: Int, resultado: SomaResultado)
+}
+
 /// Tipo produto Principal
 /// Compõe a HIERARQUIA.
 /// Esse tipo de dado representa uma partida entre duas equipes e suas cacterísticas
 pub type Partida {
   Partida(
-    id: Int,
-    equipe: Int,
-    pontuacao: Int,
-    objetivos: Int,
+    id_equipe1: Int,
+    performance_equipe1: Performance,
+    id_equipe2: Int,
+    performance_equipe2: Performance,
     duracao: Int,
-    resultado: SomaResultado,
-    oponente: Option(Partida),
   )
 }
 
@@ -22,16 +24,17 @@ pub type Equipe {
   Equipe(id: Int, nome: String, partidas: List(Partida))
 }
 
-/// Compõe a HIERARQUIA.
+/// Compõe a HIERARQUIA.  Apresenta AUTORREFERENCIA: Encadeando todas as fases até o seu
+/// final com prox_fase Vazio.
 /// Exibe as Equipes participantes em determinada Fase do Campeonato
 pub type Fase {
-  Fase(tipo: Somafase, equipes: List(Equipe))
+  Fase(categoria: Somafase, equipes: List(Equipe), prox_fase: Option(Fase))
 }
 
 /// Compõe a HIERARQUIA.
 /// Representa os dados e Fases do Campeonato
 pub type Campeonato {
-  Campeonato(nome: String, jogo: Jogo, equipes_fase: List(Fase))
+  Campeonato(nome: String, jogo: Jogo, primeira_fase: Fase)
 }
 
 /// Especifica um Jogo a ser referenciado no Campeonato
@@ -59,5 +62,8 @@ pub type SomaResultado {
 pub type SomaFase {
   Grupo
   Eliminatoria
+  Oitava
+  Quarta
+  Semifinal
   Final
 }
