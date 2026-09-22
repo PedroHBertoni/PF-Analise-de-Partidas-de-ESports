@@ -1,8 +1,7 @@
 import gleam/option.{type Option, None, Some}
-import sgleam/check
 
 pub type Performance {
-  Performance(pontuacao: Int, objetivos: Int, resultado: SomaResultado)
+  Performance(objetivos: Int, resultado: SomaResultado)
 }
 
 /// Tipo produto Principal
@@ -25,16 +24,16 @@ pub type Equipe {
 }
 
 /// Compõe a HIERARQUIA.  Apresenta AUTORREFERENCIA: Encadeando todas as fases até o seu
-/// final com prox_fase Vazio.
+/// início com *fase_anterior* Vazio.
 /// Exibe as Equipes participantes em determinada Fase do Campeonato
 pub type Fase {
-  Fase(categoria: Somafase, equipes: List(Equipe), prox_fase: Option(Fase))
+  Fase(categoria: Somafase, equipes: List(Equipe), fase_anterior: Option(Fase))
 }
 
 /// Compõe a HIERARQUIA.
 /// Representa os dados e Fases do Campeonato
 pub type Campeonato {
-  Campeonato(nome: String, jogo: Jogo, primeira_fase: Fase)
+  Campeonato(nome: String, jogo: Jogo, fase_atual: Fase)
 }
 
 /// Especifica um Jogo a ser referenciado no Campeonato
