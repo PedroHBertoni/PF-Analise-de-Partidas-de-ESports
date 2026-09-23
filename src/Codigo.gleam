@@ -7,6 +7,7 @@ pub type Partida {
 	Partida(id: Int, equipe1: Equipe, equipe2: Equipe, pontuacao1: Int, pontuacao2: Int, duracao: Int)
 }
 
+
 ///Compõe a hierarquia. Representa os dados de uma equipe participante do campeonato
 pub type Equipe {
 	Equipe(id: Int, nome: String, partidas: List(Partida))

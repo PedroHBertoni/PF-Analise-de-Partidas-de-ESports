@@ -39,13 +39,27 @@ let partida9 = Partida(1, performance9_1, 3, performance9_2, 60)
 
 
 /// Equipe(id: Int, nome: String, partidas: List(Partida))
+let equipe1_grupos = Equipe(1, "LOUD", List(partida1, partida2, partida3))
+let equipe2_grupos = Equipe(1, "Furia", List(partida1, partida4, partida5))
+let equipe3_grupos = Equipe(1, "RED Canids", List(partida2, partida4, partida6))
+let equipe4_grupos = Equipe(1, "VKS", List(partida3, partida5, partida6))
+
+let equipe1_semi = Equipe(1, "LOUD", List(partida7))
+let equipe2_semi = Equipe(1, "Furia", List(partida7))
+let equipe3_semi = Equipe(1, "RED Canids", List(partida8))
+let equipe4_semi = Equipe(1, "VKS", List(partida8))
+
+let equipe1_final = Equipe(1, "LOUD", List(partida9))
+let equipe3_final = Equipe(1, "RED Canids", List(partida9))
+
+
 let equipes_grupo_camp1 = List(equipe1, equipe2, equipe3, equipe4)
 
 /// SomaFase {Grupo, Eliminatoria, Oitava, Quarta, Semifinal, Final}
 /// Fase(categoria: Somafase, equipes: List(Equipe), fase_anterior: Option(Fase))
-let fase6_camp1 = Fase(Grupo, equipes_final_camp1, None)
-let fase5_camp1 = Fase(Grupo, equipes_semifinal_camp1, None)
-let fase4_camp1 = Fase(Grupo, equipes_quarta_camp1, None)
+let fase6_camp1 = Fase(Final, equipes_final_camp1, None)
+let fase5_camp1 = Fase(Semifinal, equipes_semifinal_camp1, None)
+let fase4_camp1 = Fase(Quarta, equipes_quarta_camp1, None)
 let fase1_camp1 = Fase(Grupo, equipes_grupo_camp1, None)
 
 /// SomaJogo = {MOBA, FPS, Luta, Battle_Royale, Estrategia}
