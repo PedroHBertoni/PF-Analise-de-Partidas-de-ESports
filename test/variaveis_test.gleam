@@ -2,25 +2,29 @@ import sgleam/check
 import src/tipos
 
 /// Performance(objetivos: Int, resultado: SomaResultado)
-let performance1_1 = Performance(13, Vitória)
+let performance_vitoria = Performance(1, Vitoria)
+let performance_empate = Performance(0, Empate)
+let performance_derrota = Performance(0, Derrota)
+
+let performance1_1 = Performance(13, Vitoria)
 let performance1_2 = Performance(4, Derrota)
-let performance2_1 = Performance(10, Vitória)
+let performance2_1 = Performance(10, Vitoria)
 let performance2_2 = Performance(1, Derrota)
-let performance3_1 = Performance(10, Vitória)
+let performance3_1 = Performance(10, Vitoria)
 let performance3_2 = Performance(6, Derrota)
-let performance4_1 = Performance(9, Vitória)
+let performance4_1 = Performance(9, Vitoria)
 let performance4_2 = Performance(13, Derrota)
-let performance5_1 = Performance(10, Vitória)
+let performance5_1 = Performance(10, Vitoria)
 let performance5_2 = Performance(8, Derrota)
-let performance6_1 = Performance(12, Vitória)
+let performance6_1 = Performance(12, Vitoria)
 let performance6_2 = Performance(6, Derrota)
 
-let performance7_1 = Performance(15, Vitória)
+let performance7_1 = Performance(15, Vitoria)
 let performance7_2 = Performance(10, Derrota)
-let performance8_1 = Performance(6, Vitória)
+let performance8_1 = Performance(6, Vitoria)
 let performance8_2 = Performance(0, Derrota)
 
-let performance9_1 = Performance(16, Vitória)
+let performance9_1 = Performance(16, Vitoria)
 let performance9_2 = Performance(10, Derrota)
 
 

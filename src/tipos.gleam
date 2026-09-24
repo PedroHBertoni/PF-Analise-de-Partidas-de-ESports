@@ -1,4 +1,5 @@
 import gleam/option.{type Option, None, Some}
+import gleam/list
 
 pub type Performance {
   Performance(objetivos: Int, resultado: SomaResultado)
@@ -33,7 +34,7 @@ pub type Fase {
 /// Compõe a HIERARQUIA.
 /// Representa os dados e Fases do Campeonato
 pub type Campeonato {
-  Campeonato(nome: String, jogo: Jogo, fase_atual: Fase)
+  Campeonato(nome: String, jogo: Jogo, fase_atual: Option(Fase))
 }
 
 /// Especifica um Jogo a ser referenciado no Campeonato

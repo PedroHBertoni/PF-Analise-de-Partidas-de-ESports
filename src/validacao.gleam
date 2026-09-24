@@ -1,5 +1,6 @@
 import tipos
 
+/// Verifica Performance de um time não ter um número de objetivos negativos
 pub fn validar_performance(performance: Performance) -> Result(Performance, Nil) {
   case performance.objetivos >= 0 {
     True -> Ok(performance)
@@ -7,6 +8,8 @@ pub fn validar_performance(performance: Performance) -> Result(Performance, Nil)
   }
 }
 
+/// Verifica Partida não ter a mesma equipe lutando contra si mesma, e os identificadores
+/// de cada um serem positivos + suas Performances também devem ser válidas
 pub fn validar_partida(partida: Partida) -> Result(Partida, Nil) {
   case
     validar_performance(partida.perform_equipe1),
@@ -16,11 +19,16 @@ pub fn validar_partida(partida: Partida) -> Result(Partida, Nil) {
     && partida.id_equipe2 > 0
     && partida.duracao >= 0
   {
-    Ok(_), Ok(_), True -> Ok(partida)
+    Ok(_), Ok(_), True -> case partida.perform_equipe1, partida.perform_equipe2 {
+      Vitoria, Derrota | Empate, Empate | Derrota, Vitoria -> Ok(partida)
+      _, _ -> Error(Nil)
+    }
     _, _, _ -> Error(Nil)
   }
 }
 
+/// Valida todas as Partidas agrupadas em uma Lista e verifica se todas elas apresentam o
+/// mesmo time por *id*, seja como equipe 1 ou 2
 pub fn validar_lista_partidas(
   partidas: List(Partida),
   id: Int,
@@ -38,6 +46,8 @@ pub fn validar_lista_partidas(
   }
 }
 
+/// Valida uma equipe ter identificador positivo, um nome não vazio e pontuação não negativa,
+/// além de validar todas as partidas, considerando que devem ter seu id
 pub fn validar_equipe(equipe: Equipe) -> Result(Equipe, Nil) {
   case equipe.id > 0 && equipe.nome != "" && equipe.pontuacao >= 0 {
     True ->
@@ -49,28 +59,36 @@ pub fn validar_equipe(equipe: Equipe) -> Result(Equipe, Nil) {
   }
 }
 
+/// Valida todas as Equipes agrupadas em uma Lista e verifica se são únicas na Lista
 pub fn validar_lista_equipes(equipes: List(Equipe)) -> Result(List(Equipe), Nil) {
   case equipes {
     [] -> Ok(equipes)
     [primeiro, ..resto] ->
-      case validar_equipe(primeiro) {
-        Ok(_) -> validar_lista_equipes(resto)
-        Error(Nil) -> Error(Nil)
+      case validar_equipe(primeiro), encontra_equipe(primeiro.id, resto) {
+        Ok(_), None -> validar_lista_equipes(resto)
+        _, _ -> Error(Nil)
       }
   }
 }
 
+
+/// Valida uma fase passando por todas as suas equipes, e recursivamente verifica sua fase anterior
+/// a qual também deve ser válida
 pub fn validar_fase(fase: Fase) -> Result(Fase, Nil) {
-  case validar_lista_equipes(fase.equipes) {
-    Ok(_) ->
-      case fase.fase_anterior {
-        None -> Ok(fase)
-        Some(anterior) -> validar_fase(anterior)
-      }
-    Error(Nil) -> Error(Nil)
+  case fase.categoria, list.length(fase.equipes) {
+    Grupos, _ | Eliminatoria, _ | Oitava, 16 | Quarta, 8 | Semifinal, 4 | Final, 2 -> case validar_lista_equipes(fase.equipes) {
+      Ok(_) ->
+        case fase.fase_anterior {
+          None -> Ok(fase)
+          Some(anterior) -> validar_fase(anterior)
+        }
+      Error(Nil) -> Error(Nil)
+    }
+    _, _ -> Error(Nil)
   }
 }
 
+/// Valida um campeonato verificando seu Jogo e sua Fase Atual, além de seu nome não ser vazio
 pub fn validar_campeonato(campeonato: Campeonato) -> Result(Campeonato, Nil) {
   case campeonato.nome != "" {
     True ->
@@ -82,6 +100,7 @@ pub fn validar_campeonato(campeonato: Campeonato) -> Result(Campeonato, Nil) {
   }
 }
 
+/// Valida um jogo com duração média positiva e nome não vazio
 pub fn validar_jogo(jogo: Jogo) -> Result(Jogo, Nil) {
   case jogo.duracao_media > 0 && jogo.nome != "" {
     True -> Ok(jogo)
