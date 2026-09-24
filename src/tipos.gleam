@@ -1,13 +1,13 @@
 import gleam/option.{type Option, None, Some}
 
-pub opaque type Performance {
+pub type Performance {
   Performance(objetivos: Int, resultado: SomaResultado)
 }
 
 /// Tipo produto Principal
 /// Compõe a HIERARQUIA.
 /// Esse tipo de dado representa uma partida entre duas equipes e suas cacterísticas
-pub opaque type Partida {
+pub type Partida {
   Partida(
     id_equipe1: Int,
     perform_equipe1: Performance,
@@ -19,25 +19,25 @@ pub opaque type Partida {
 
 /// Compõe a HIERARQUIA.
 /// Representa os dados e Partidas de uma Equipe participante de uma Fase no Campeonato
-pub opaque type Equipe {
-  Equipe(id: Int, nome: String, pontuacao: Int, partidas: Option(List(Partida)))
+pub type Equipe {
+  Equipe(id: Int, nome: String, pontuacao: Int, partidas: List(Partida))
 }
 
 /// Compõe a HIERARQUIA.  Apresenta AUTORREFERENCIA: Encadeando todas as fases até o seu
 /// início com *fase_anterior* Vazio.
 /// Exibe as Equipes participantes em determinada Fase do Campeonato
-pub opaque type Fase {
-  Fase(categoria: Somafase, equipes: List(Equipe), fase_anterior: Option(Fase))
+pub type Fase {
+  Fase(categoria: SomaFase, equipes: List(Equipe), fase_anterior: Option(Fase))
 }
 
 /// Compõe a HIERARQUIA.
 /// Representa os dados e Fases do Campeonato
-pub opaque type Campeonato {
+pub type Campeonato {
   Campeonato(nome: String, jogo: Jogo, fase_atual: Fase)
 }
 
 /// Especifica um Jogo a ser referenciado no Campeonato
-pub opaque type Jogo {
+pub type Jogo {
   Jogo(nome: String, tipo: SomaJogo, duracao_media: Int)
 }
 
