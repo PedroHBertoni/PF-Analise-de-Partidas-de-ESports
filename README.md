@@ -14,18 +14,18 @@
 
 O sistema é uma solução desenvolvida em Gleam voltada para a estruturação, validação rigorosa de consistência e análise estatística de torneios de jogos digitais e e-sports.
 
-A aplicação gerencia a hierarquia completa de um campeonato (`Campeonato → Fase → Equipe → Partida`), aplicando regras de integridade histórica (como verificação de coerência de vitórias/derrotas, impedimento de confrontos de uma equipe contra si mesma e checagem de fases encadeadas) através de pattern matching, recursão estrutural e tipos algébricos, garantindo a ausência total de mutabilidade e de efeitos colaterais.
+A aplicação gerencia a hierarquia completa de um campeonato (Campeonato > Fase > Equipe > Partida), aplicando regras de integridade histórica (como verificação de coerência de vitórias/derrotas, impedimento de confrontos de uma equipe contra si mesma e checagem de fases encadeadas) através de pattern matching, recursão estrutural e tipos algébricos, garantindo a ausência total de mutabilidade e de efeitos colaterais.
 
 ## 3. Tipos Criados (src/tipos.gleam)
 
 ### Tipos Produto (Estruturas Compostas)
 
-* Performance: Associa o número de objetivos cumpridos (não-negativo) ao resultado obtido (`SomaResultado`).
-* Partida: Registra os identificadores das duas equipes (`id_equipe1`, `id_equipe2`), suas respectivas `Performance`s e a duração total em minutos.
-* Equipe: Armazena identificador único (`id`), nome, pontuação acumulada e a lista do histórico de partidas (`List(Partida)`).
-* Fase: Estrutura autorreferente que armazena a categoria da etapa (`SomaFase`), a lista de equipes participantes (`List(Equipe)`) e um ponteiro opcional para a fase anterior (`Option(Fase)`).
-* Jogo: Armazena o nome, o gênero (`SomaJogo`) e a duração média prevista em minutos.
-* Campeonato: Tipo topo da hierarquia, associando o nome do torneio, o `Jogo` disputado e a fase atual (`Option(Fase)`).
+* Performance: Associa o número de objetivos cumpridos (não-negativo) ao resultado obtido (SomaResultado).
+* Partida: Registra os identificadores das duas equipes (id_equipe1, id_equipe2), suas respectivas Performances e a duração total em minutos.
+* Equipe: Armazena identificador único (id), nome, pontuação acumulada e a lista do histórico de partidas (List(Partida)).
+* Fase: Estrutura autorreferente que armazena a categoria da etapa (SomaFase), a lista de equipes participantes (List(Equipe)) e um ponteiro opcional para a fase anterior (Option(Fase)).
+* Jogo: Armazena o nome, o gênero (SomaJogo) e a duração média prevista em minutos.
+* Campeonato: Tipo topo da hierarquia, associando o nome do torneio, o Jogo disputado e a fase atual (`Option(Fase)`).
 
 ### Tipos Soma 
 
