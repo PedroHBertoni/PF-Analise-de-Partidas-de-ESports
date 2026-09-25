@@ -7,7 +7,7 @@
 * **Disciplina:** Programação Funcional
 * **Professor:** Wagner Igarashi
 * **Integrantes:**
-   Anna Lísia de Almeida Yaguti - RA145093
+   Anna Lísia de Almeida Yaguti - RA145093, 
    Pedro Henrique Bertoni de Souza - RA143345
 
 ## 2. Breve Descrição do Sistema
