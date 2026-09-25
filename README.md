@@ -52,5 +52,7 @@ A aplicação gerencia a hierarquia completa de um campeonato (Campeonato > Fase
 | F7 | Validação de Regras de Confronto | validar_partida | validacao.gleam |
 
 | F8 | Decomposição em Funções Auxiliares | validar_partida, validar_equipe, soma_pontuacao | validacao.gleam / analise.gleam |
+
 | F9 | Navegação em Estrutura Autorreferente | validar_fase | validacao.gleam |
+
 | F10 | Validação e Consolidação Global | validar_campeonato | validacao.gleam |
