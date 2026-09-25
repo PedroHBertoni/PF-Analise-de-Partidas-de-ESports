@@ -1,4 +1,5 @@
 import tipos
+import analise
 
 /// Verifica Performance de um time não ter um número de objetivos negativos
 pub fn validar_performance(performance: Performance) -> Result(Performance, Nil) {
@@ -76,7 +77,7 @@ pub fn validar_lista_equipes(equipes: List(Equipe)) -> Result(List(Equipe), Nil)
 /// a qual também deve ser válida
 pub fn validar_fase(fase: Fase) -> Result(Fase, Nil) {
   case fase.categoria, list.length(fase.equipes) {
-    Grupos, _ | Eliminatoria, _ | Oitava, 16 | Quarta, 8 | Semifinal, 4 | Final, 2 -> case validar_lista_equipes(fase.equipes) {
+    Grupo, _ | Eliminatoria, _ | Oitava, 16 | Quarta, 8 | Semifinal, 4 | Final, 2 -> case validar_lista_equipes(fase.equipes) {
       Ok(_) ->
         case fase.fase_anterior {
           None -> Ok(fase)
@@ -105,5 +106,17 @@ pub fn validar_jogo(jogo: Jogo) -> Result(Jogo, Nil) {
   case jogo.duracao_media > 0 && jogo.nome != "" {
     True -> Ok(jogo)
     False -> Error(Nil)
+  }
+}
+
+/// Retorna uma Equipe por seu *id_equipe* específico, em uma lista de *equipes*
+pub fn busca_equipe(id_equipe: Int, equipes: List(Equipe)) -> Option(Equipe) {
+  case equipes {
+    [] -> None
+    [em_analise, ..resto] ->
+      case em_analise.id == id_equipe {
+        True -> em_analise
+        False -> busca_equipe(id_equipe, resto)
+      }
   }
 }
