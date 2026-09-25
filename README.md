@@ -3,13 +3,12 @@
 ## 1. Tema e Informações Gerais
 
 * **Tema:** Tema 10 — Análise de Jogos Digitais e E-Sports
-* **Linguagem:** Gleam (versão 1.0.0+)
-* **Paradigma:** Programação Funcional Pura
+* **Linguagem:** Gleam 
 * **Disciplina:** Programação Funcional
-* **Professor:** [Nome do Professor]
+* **Professor:** Wagner Igarashi
 * **Integrantes:**
-  * [Anna Lísia de Almeida Yaguti] - [RA145093]
-  * [Pedro Henrique Bertoni de Souza] - [RA143345]
+  * Anna Lísia de Almeida Yaguti - RA145093
+  * Pedro Henrique Bertoni de Souza - RA143345
 
 ## 2. Breve Descrição do Sistema
 
