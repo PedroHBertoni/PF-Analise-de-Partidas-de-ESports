@@ -36,13 +36,21 @@ A aplicação gerencia a hierarquia completa de um campeonato (Campeonato > Fase
 ## 4. Mapeamento de Funcionalidades (F1–F10)
 
 | ID | Funcionalidade Exigida | Função(ões) Implementadora(s) | Módulo |
+
 | F1 | Definição dos Tipos do Domínio | Performance, Partida, Equipe, Fase, Campeonato, Jogo | tipos.gleam |
+
 | F2 | Construtores e Validações Primárias | validar_performance, validar_jogo | validacao.gleam |
+
 | F3 | Agregação por Recursão Estrutural | pontuacao_total, soma_pontuacao | analise.gleam |
+
 | F4 | Busca e Filtragem com Option | busca_equipe | analise.gleam |
+
 | F5 | Mapeamento e Transformação de Dados | validar_lista_partidas | validacao.gleam |
+
 | F6 | Ordenação / Unicidade de Elementos | validar_lista_equipes | validacao.gleam |
+
 | F7 | Validação de Regras de Confronto | validar_partida | validacao.gleam |
+
 | F8 | Decomposição em Funções Auxiliares | validar_partida, validar_equipe, soma_pontuacao | validacao.gleam / analise.gleam |
 | F9 | Navegação em Estrutura Autorreferente | validar_fase | validacao.gleam |
 | F10 | Validação e Consolidação Global | validar_campeonato | validacao.gleam |
